@@ -1,0 +1,25 @@
+				SCPI.TXT
+			DECOM/FEEC/UNICAMP
+			*** 8 DE MAIO DE 2014*** 
+		EE882 - LAB. DE COMUNICAÇÕES
+
+ 	SCPI > Standard Commands for Programmable Instruments
+	Comandos SCPI para o Gerador de Funções Agilent 33220A
+
+	Exemplos: (Favor adicionar mais alguns..
+		mas TESTE antes)
+
+1]	*IDN?   
+	Identificar o gerador.
+
+2]	*RST
+	"Resetar" o gerador para a condição "default" de partida.
+
+3]	*CLS
+	Limpa erro de comando enviado incorretamente(sintaxe,valores,etc..
+
+4] 	APPL:SIN 2.7E+3, 2.0, -0.45
+	Aplicar: Onda senoidal,   2,7 KHz ,  2  V ,  - 0,45V de OFFSET(DC)
+	OBS: CR( carriage return ) e  LF( line feed ) são colocados pelo programa pclan.exe.
+
+	OBS: APPL:TRI gera rampa com simetria 50%

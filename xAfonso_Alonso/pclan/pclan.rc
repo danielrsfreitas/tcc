@@ -1,0 +1,242 @@
+//Microsoft Visual C++ generated resource script.
+//
+
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#define APSTUDIO_HIDDEN_SYMBOLS
+#include "windows.h"
+#undef APSTUDIO_HIDDEN_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+
+IDI_PCLAN				ICON    DISCARDABLE     "pclan.ICO"
+IDI_SMALL               ICON    DISCARDABLE     "SMALL.ICO"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+IDC_PCLAN MENU DISCARDABLE
+//LOADONCALL FIXED 
+//DISCARDABLE
+BEGIN
+    POPUP "&Arquivo"
+    BEGIN
+        //MENUITEM "&Uso...",				IDM_USO
+		//MENUITEM  SEPARATOR
+        //MENUITEM "&Aviso...",			IDM_AVISO
+		//MENUITEM  SEPARATOR
+        MENUITEM "&Sair",               IDM_SAIR
+    END
+ 
+	POPUP "P&roc"
+    BEGIN
+        MENUITEM "&Proc...",            IDM_PROC
+    END
+    POPUP "&Info"
+    BEGIN
+        MENUITEM "&InfoGERAL...",		IDM_INFOGERAL
+		MENUITEM  SEPARATOR
+        MENUITEM "&InfoCABOS...",		IDM_INFOCABOS
+		MENUITEM  SEPARATOR
+        MENUITEM "&InfoREDE...",		IDM_INFOREDE
+    END
+
+    POPUP "&SCPI"
+    BEGIN
+        MENUITEM "&Alguns Comandos SCPI??",	IDM_SCPI
+    END
+	POPUP "&Comandos..."
+    BEGIN
+        MENUITEM "&Entrar em Rede...",	IDM_REDE
+    END
+
+    POPUP "&Utilidades Gerais..." 
+    BEGIN
+        MENUITEM "&CALC..",				IDM_CALC
+		MENUITEM  SEPARATOR
+        MENUITEM "&NOTE..",				IDM_NOTE
+	END
+
+    POPUP "&Arquivo Fonte..." 
+    BEGIN
+        MENUITEM "re&source.h",			IDM_RES
+		MENUITEM  SEPARATOR
+        MENUITEM "&pclan.rc",			IDM_RC
+		MENUITEM  SEPARATOR
+        MENUITEM "p&clan.cpp",			IDM_CPP
+	END
+
+
+
+END
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Accelerator
+//
+
+IDC_PCLAN ACCELERATORS MOVEABLE PURE
+BEGIN
+    "?",            IDM_ABOUT,              ASCII,  ALT
+    "/",            IDM_ABOUT,              ASCII,  ALT
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_REDEBOX DIALOG FIXED  22, 17, 440, 270   // Era DISCARDABLE
+STYLE DS_MODALFRAME | WS_CAPTION | WS_SYSMENU 
+CAPTION "Comandar"
+FONT 8, "System"
+BEGIN
+    ICON            IDI_PCLAN,IDC_MYICON,14,9,16,16
+    LTEXT           "pclan Versão 1.0",IDC_STATIC,49,10,119,8,SS_NOPREFIX
+    LTEXT           "Abril de 2014",IDC_STATIC,49,20,119,8
+	LTEXT           "Tecle o IP do Gerador",IDC_STATIC,10,35,80,12
+	LTEXT           " 143.106.150.178",IDC_STATIC,10,45,80,12
+	EDITTEXT  IDD_EDIP,10,54,60,12, WS_GROUP | WS_BORDER | WS_CHILD	  
+
+	LTEXT           "Comandos para Gerador ( Formato Abaixo )",IDC_STATIC,10,80,140,10
+	LTEXT           "APPL:SINAL  FREQ,  AMPL,  OFFSET",IDC_STATIC,10,90,120,10
+	//LTEXT           "APPL:SIN 5.0E+3, 3.0, -2.5",IDC_STATIC,10,100,120,10
+	CONTROL	"",IDD_CMD,"edit",WS_GROUP |  ES_MULTILINE |	//WS_TABSTOP |
+									WS_VSCROLL | WS_GROUP |
+							  ES_WANTRETURN | WS_BORDER | WS_CHILD,10,100,210,28
+    PUSHBUTTON   "Enviar Comando ",IDC_CMD,90,131,60,11, WS_GROUP | WS_CHILD	
+
+	LTEXT     "+InfoSCPI",IDC_STATIC,200,25,34,12
+    PUSHBUTTON   "SCPI ",IDM_SCPI,197,34,46,11, WS_GROUP | WS_CHILD	
+
+
+	GROUPBOX "Escolha Comando" IDD_ESCCMD,120,10,75,60,  WS_CHILD	//WS_TABSTOP |
+
+	CONTROL " *IDN?",IDD_IDN,"BUTTON",BS_AUTORADIOBUTTON | 
+							WS_GROUP |  WS_CHILD,135,23,50,12		//WS_TABSTOP |   
+	CONTROL " *CLS",IDD_CLS,"button",BS_AUTORADIOBUTTON | 
+									  WS_CHILD,135,35,50,12			//WS_TABSTOP |
+	CONTROL " *RST",IDD_RST,"button",BS_AUTORADIOBUTTON | 
+									  WS_CHILD,135,47,50,12			//WS_TABSTOP |	
+
+
+	GROUPBOX "IPs dos PCs da REDE" IDD_PCREDE,260,8,95,68, WS_CHILD		//...95,68,WS_GROUP |WS_TABSTOP | WS_CHILD
+	EDITTEXT  IDD_EDIPJAN,290,18,60,12, WS_BORDER | WS_CHILD			
+	EDITTEXT  IDD_EDIPPOR,290,32,60,12, WS_BORDER | WS_CHILD
+	EDITTEXT  IDD_EDIPFUN,290,46,60,12, WS_BORDER | WS_CHILD
+	EDITTEXT  IDD_EDIPPIA,290,60,60,12, WS_BORDER | WS_CHILD
+
+
+	LTEXT     "JAN",IDC_STATIC,270,18,23,12
+	LTEXT     "POR",IDC_STATIC,270,32,23,12
+	LTEXT     "FUN",IDC_STATIC,270,46,23,12
+	LTEXT     "PIA",IDC_STATIC,270,60,23,12
+
+	GROUPBOX "ENVIAR Para >..." IDD_MDREDE,357,8,75,68, WS_CHILD		//...75,68,WS_TABSTOP | WS_CHILD
+	CONTROL " JAN",IDD_JAN,"button",BS_AUTORADIOBUTTON | 
+							WS_GROUP |  WS_CHILD,366,18,27,12		//..WS_GROUP | WS_TABSTOP | WS_CHILD,366,18,27,12
+	CONTROL " POR",IDD_POR,"button",BS_AUTORADIOBUTTON | 
+							WS_GROUP |  WS_CHILD,366,32,27,12		//..WS_GROUP | WS_TABSTOP | WS_CHILD,366,32,27,12
+	CONTROL " FUN",IDD_FUN,"button",BS_AUTORADIOBUTTON | 
+							WS_GROUP | WS_CHILD,366,46,27,12		//...WS_GROUP |WS_TABSTOP | WS_CHILD,366,46,27,12
+	CONTROL " PIA",IDD_PIA,"button",BS_AUTORADIOBUTTON | 
+							WS_GROUP | WS_CHILD,366,60,27,12		//...WS_GROUP |WS_TABSTOP | WS_CHILD,366,60,27,12
+
+	CONTROL	"Escrever",IDD_TXBP,"edit", WS_VSCROLL | WS_GROUP |
+							ES_MULTILINE | ES_WANTRETURN | WS_BORDER | WS_CHILD,240,90,180,35
+
+	CONTROL	"PC Remoto responde aqui",IDD_RXBP,"edit",ES_READONLY | WS_VSCROLL | WS_GROUP |
+							ES_MULTILINE | ES_WANTRETURN | WS_BORDER | WS_CHILD,240,180,180,35
+	LTEXT     " BATEPAPO PELO TECLADO",IDC_STATIC,270,135,100,12
+
+
+	CONTROL "** Resposta do Gerador **",IDC_STATIC,"static",SS_LEFT |
+									WS_CHILD,75,165,90,12
+
+	CONTROL	"",IDD_RESP,"edit",ES_READONLY | WS_HSCROLL | WS_VSCROLL | WS_GROUP |
+							ES_MULTILINE | ES_WANTRETURN | WS_BORDER | WS_CHILD,10,180,210,40
+
+	LTEXT     "( PROTOCOLO : TCP )",IDC_STATIC,87,150,75,12
+	LTEXT     "( PROTOCOLO : UDP )",IDC_STATIC,280,150,75,12
+
+
+		PUSHBUTTON "Cair Fora",IDOK,165,240,50,11, WS_CHILD		//WS_GROUP |
+END
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""windows.h""\r\n"
+    "#undef APSTUDIO_HIDDEN_SYMBOLS\r\n"
+    "#include ""resource.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// String Table
+//
+
+STRINGTABLE DISCARDABLE 
+BEGIN
+   IDC_PCLAN			"PCLAN"
+   IDS_APP_TITLE		"pclan"
+   IDS_HELLO			""
+END
+
+#endif
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

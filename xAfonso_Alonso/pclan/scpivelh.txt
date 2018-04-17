@@ -1,0 +1,15 @@
+				SCPI.TXT
+			DECOM/FEEC/UNICAMP
+			*** 8 DE MAIO DE 2014*** 
+		EE882 - LAB. DE COMUNICAÇÕES
+		Aplicativo : ** PCLAN.EXE ** Versão 1.0
+
+ 	SCPI > Standard Commands for Programmable Instruments
+	Comandos SCPI para o Geradores de Funções Agilent : 33220A e 33210A
+
+	Exemplos: (Favor adicionar mais alguns..
+		mas TESTE antes)
+
+1]	*IDN?   
+	Identificar o gerador.
+
