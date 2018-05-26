@@ -12,16 +12,19 @@ RATE = 44100 # Sampling rate
 
 # Define callback
 def callback(in_data, frame_count, time_info, status):
-	wf.writeframesraw(in_data) # Not so sure
+	wf.writeframesraw(in_data) 
 	return (in_data, pyaudio.paContinue)
 
 
-
-if len(sys.argv) < 2:
-    print("Records a wave file named %s \n\n" % sys.argv[0])
+# Receive the name of the wave file as an argument
+if len(sys.argv) < 3:
+    print("Records a wave file named %s %d\n\n" % sys.argv[0])
     sys.exit(-1)
 
-wf = wave.open(sys.argv[1], 'w') # Returns a Wave_write object named 
+audio_name = sys.argv[1]
+audio_len = sys.argv[2]
+
+wf = wave.open(audio_name, 'w') # Returns a wave_write object named 
 
 # Fill object parameters
 wf.setnchannels(CHANNELS) 
@@ -45,8 +48,9 @@ stream = p.open(
 
 stream.start_stream()
 
-while stream.is_active():
-	time.sleep(5)
+#while stream.is_active():
+time.sleep(int(audio_len))
+
 # stop stream 
 stream.stop_stream()
 stream.close()

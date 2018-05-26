@@ -37,13 +37,21 @@ plt.show()
 fig, ax = plt.subplots() # Create subplot
 x = np.arange(0, 2 * CHUNK, 2) # returns an evenly spaced array of size 2 * CHUNK and pace of 2
 
+
 line, = ax.plot(x, np.random.rand(CHUNK)) # plot returns a 2D line
 ax.set_ylim(0, 255) # Y-axis chart bounds
 ax.set_xlim(0, CHUNK) # X-axis chart bounds
+fig.show()
+
 
 while True:
     data = stream.read(CHUNK) # Reading audio  
-    data_int = np.array(struct.unpack(str(2  * CHUNK) + 'B', data), dtype='b')[::2] + 130 # A little bit of display processing
+    data_int = np.array(struct.unpack(str(2  * CHUNK) + 'B', data), dtype='b')[::2] + 127 # A little bit of display processing
     line.set_ydata(data_int) # 1D array manipulation which is amplitude of audio
-    fig.canvas.draw() 
-    fig.canvas.flush_events() # Buffer size must be respected. Other than that input overflow occurs
+    #fig.canvas.draw() 
+    #fig.canvas.flush_events() # Buffer size must be respected. Other than that input overflow occurs
+    
+
+
+
+
