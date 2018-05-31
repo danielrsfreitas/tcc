@@ -1,3 +1,12 @@
+"""
+
+Type in terminal:
+
+    python3 socket_server.py 
+
+
+"""
+
 import socket
 
 HOST = '127.0.0.1'
