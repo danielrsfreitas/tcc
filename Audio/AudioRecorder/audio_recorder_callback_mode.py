@@ -47,7 +47,7 @@ def sample_with_scipy(audio_name, audio_rate, new_rate):
 
 	# Normalized from -1 to 1 
 	# Casting np array to float32 to carry more info (see scypi.io.wavfile.write doc.)
-	flt = data_sampled.astype(np.float32)/np.amax(data_sampled)
+	flt = data_sampled.astype(np.float32)/np.amax(np.abs(data_sampled))
 
 	# Plot raw chart (96kHz)
 	plt.figure(1)
