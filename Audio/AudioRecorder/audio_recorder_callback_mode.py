@@ -31,30 +31,14 @@ RATE = 96000 # Maximum sampling rate microphone driver
 SAMP_WIDTH = [1, 2, 3, 4]
 
 """
-	
-	Quantization and Normalization of signal proposed by Lucas Gabrielli
-
-"""
-
-def quantizate(data_sampled):
 
 
-
-# Re-normaliza para [0; q]: q / 2 *(data_sampled + 1)
-# Parte inteira, limitada em [0; q-1]: numpy.clip(numpy.floor(...), None, q - 1)
-# Re-normaliza para [-1; 1]: ... / ((q - 1) / 2) - 1
-data_quant = numpy.clip(numpy.floor(q / 2 * (data_sampled + 1)), None, q - 1) / ((q - 1) / 2) - 1
-
-plt.figure(4)
-plt.plot(data_quant)
-
-"""
 
 """
 
 def sample_with_scipy(audio_name, audio_rate, new_rate):
 
-	q = 300
+	q = 25
 	# Ratio is the pace which the audio will be sampled in the numpy array
 	RATIO = round(audio_rate/new_rate)
 
@@ -68,51 +52,47 @@ def sample_with_scipy(audio_name, audio_rate, new_rate):
 	# Casting np array to float32 to carry more info (see scypi.io.wavfile.write doc.)
 	flt = data_sampled.astype(np.float32)/np.amax(np.abs(data_sampled))
 
+	# Re-normaliza para [0; q]: q / 2 *(data_sampled + 1)
+	# Parte inteira, limitada em [0; q-1]: numpy.clip(numpy.floor(...), None, q - 1)
+	# Re-normaliza para [-1; 1]: ... / ((q - 1) / 2) - 1
+	data_quant = np.clip(np.floor(q / 2 * (flt + 1)), None, q - 1) / ((q - 1) / 2) - 1
+
+
 	# Plot raw chart (96kHz)
 	plt.figure(1)
+	plt.title(' Raw signal ')
+	plt.xlabel(' Samples ')
+	plt.ylabel(' Amplitude ')
 	plt.plot(data)
 
 	# Plot sampled chart
 	plt.figure(2)
+	plt.title(' Sampled signal')
+	plt.xlabel(' Samples ')
+	plt.ylabel(' Amplitude ')
 	plt.plot(data_sampled)
 
 	# Plot -1 to 1 chart
 	plt.figure(3)
+	plt.title(' Normalized signal ')
+	plt.xlabel(' Samples ')
+	plt.ylabel(' Amplitude ')
 	plt.plot(flt)
 
-	data_quant = np.clip(np.floor(q / 2 * (flt + 1)), None, q - 1) / ((q - 1) / 2) - 1
-
+	# Plot 
 	plt.figure(4)
+	plt.title(' Digitized signal ')
+	plt.xlabel(' Samples ')
+	plt.ylabel(' Amplitude ')
 	plt.plot(data_quant)
 	
 	plt.show()
 
 	# Write audio files
 	wavfile.write('after_sample.wav',audio_rate, data)
-	wavfile.write('after_sample_32bits.wav',new_rate, flt)
+	wavfile.write('after_sample_.wav',new_rate, flt)
 	wavfile.write('after_sample_worse.wav', new_rate, data_sampled)
 	wavfile.write('after_quantization.wav', new_rate, data_quant)
-
-
-
-"""
-
-	Did not work. Basically works as when we play the audio with a different sampling rate
-
-
-def sample_audio_44100(audio_name):
-	wf_read = wave.open(audio_name, 'r')
-	data = wf_read.readframes(wf_read.getnframes())
-
-	wf_write = wave.open(audio_name+"_sampled_44100Hz", 'w')
-	wf_write.setnchannels(CHANNELS) 
-	wf_write.setsampwidth(4)
-	wf_write.setframerate(44100)
-	wf_write.writeframesraw(data)
-
-	wf_read.close()
-	wf_write.close()
-"""
 
 
 """
@@ -177,9 +157,7 @@ stream = p.open(
                 input = True,
                 stream_callback = callback)
 
-#data = stream.read(CHUNK)
 # Write acquired date in wave file
-
 stream.start_stream()
 
 #while stream.is_active():
@@ -196,7 +174,3 @@ wf.close()
 p.terminate()
 
 sample_with_scipy(audio_name, RATE, new_rate)
-
-
-
-
