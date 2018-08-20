@@ -40,17 +40,17 @@ def quantizate(data_sampled):
 
 
 
-# Re-normaliza para [0; q]: q / 2 *(data_sampled + 1)
-# Parte inteira, limitada em [0; q-1]: numpy.clip(numpy.floor(...), None, q - 1)
-# Re-normaliza para [-1; 1]: ... / ((q - 1) / 2) - 1
-data_quant = numpy.clip(numpy.floor(q / 2 * (data_sampled + 1)), None, q - 1) / ((q - 1) / 2) - 1
+    # Re-normaliza para [0; q]: q / 2 *(data_sampled + 1)
+    # Parte inteira, limitada em [0; q-1]: numpy.clip(numpy.floor(...), None, q - 1)
+    # Re-normaliza para [-1; 1]: ... / ((q - 1) / 2) - 1
+    data_quant = numpy.clip(numpy.floor(q / 2 * (data_sampled + 1)), None, q - 1) / ((q - 1) / 2) - 1
 
-plt.figure(4)
-plt.plot(data_quant)
+    plt.figure(4)
+    plt.plot(data_quant)
 
-"""
+    """
 
-"""
+    """
 
 def sample_with_scipy(audio_name, audio_rate, new_rate):
 
