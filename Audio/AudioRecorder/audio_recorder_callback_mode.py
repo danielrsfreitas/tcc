@@ -1,7 +1,7 @@
 """
 Type in command line :
 
-	python3 audio_recorder_callback_mode.py audiofile_name.wav length_in_seconds levels_quant new_rate
+	python3 audio_recorder_callback_mode.py audiofile_name.wav length_in_seconds levels_quant new_rate steps
 
 levels_quant : 1 - 8bits
 			   2 - 16bits 
@@ -13,6 +13,8 @@ new_rate    :  Pick a new sapling rate, for instance
 			   46000   Hz 
 			   88200   Hz
 			   96000   Hz
+
+steps 		: Pick number of steps for quantization
 """
 
 import pyaudio
@@ -36,9 +38,9 @@ SAMP_WIDTH = [1, 2, 3, 4]
 
 """
 
-def sample_with_scipy(audio_name, audio_rate, new_rate):
+def sample_with_scipy(audio_name, audio_rate, new_rate, steps):
 
-	q = 25
+	q = steps
 	# Ratio is the pace which the audio will be sampled in the numpy array
 	RATIO = round(audio_rate/new_rate)
 
@@ -133,14 +135,15 @@ def set_audiofile_params(audio_name, channels, samp_width, audio_rate):
 """
 
 # Receive the name of the wave file as an argument
-if len(sys.argv) < 5:
-    print("Records a wave file named %s %d %d %d\n\n" % sys.argv[0])
+if len(sys.argv) < 6:
+    print("Records a wave file named %s %d %d %d %d\n\n" % sys.argv[0])
     sys.exit(-1)
 
 audio_name = sys.argv[1]
 audio_len = sys.argv[2]
 audio_format = int(sys.argv[3])
 new_rate = int(sys.argv[4])
+steps = int(sys.argv[5])
 
 
 
@@ -173,4 +176,4 @@ wf.close()
 # close PyAudio 
 p.terminate()
 
-sample_with_scipy(audio_name, RATE, new_rate)
+sample_with_scipy(audio_name, RATE, new_rate, steps)
